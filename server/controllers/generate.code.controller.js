@@ -13,6 +13,7 @@ export const backendCodeGenerator=async(req,res)=>{
       if(!projectDescription){
          return res.status(400).json({error:"Please provide a project description"});
       }
+      
       res.status(200).json({message:"This route is under working"});
    }catch(error){
       console.error("Error occurred in backendCodeGenerator controller:",error);
@@ -38,34 +39,11 @@ export const promptEnchancer=async(req,res)=>{
          messages:[
             {
                role:"system",
-               content:`You are a professional prompt engineer specializing in crafting precise, effective prompts.
-            Your task is to enhance prompts by making them more specific, actionable, and effective.
-
-            I want you to improve the user prompt that is wrapped in \`<original_prompt>\` tags.
-
-            For valid prompts:
-            - Make instructions explicit and unambiguous
-            - Add relevant context and constraints
-            - Remove redundant information
-            - Maintain the core intent
-            - Ensure the prompt is self-contained
-            - Use professional language
-
-            For invalid or unclear prompts:
-            - Respond with clear, professional guidance
-            - Keep responses concise and actionable
-            - Maintain a helpful, constructive tone
-            - Focus on what the user should provide
-            - Use a standard template for consistency
-
-            IMPORTANT: Your response must ONLY contain the enhanced prompt text.
-            Do not include any explanations, metadata, or wrapper tags.`,
+               content:"Your are intelligent assistant who help user to enchance their prompt to generate better code",
             },
             {
                role:"user",
-               content:`<original_prompt>
-              ${prompt}
-            </original_prompt>`
+               content:prompt,
             }
          ],
          max_tokens:999999,
